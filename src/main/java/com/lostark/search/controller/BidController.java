@@ -1,0 +1,25 @@
+package com.lostark.search.controller;
+
+import com.lostark.search.service.BidService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class BidController {
+
+    private final BidService bidService;
+
+    @Autowired
+    public BidController(BidService bidService) {
+        this.bidService = bidService;
+    }
+
+    @GetMapping("/bid")
+    public String getBid(Model model) {
+
+        return "bid";
+    }
+
+}

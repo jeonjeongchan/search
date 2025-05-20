@@ -1,0 +1,143 @@
+h2 {
+  margin-bottom: 30px; /* 제목 아래 간격 */
+}
+
+form.bid_calculator {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* form 내부 각 블록 간격 */
+form.bid_calculator > div {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.radio-group {
+  display: flex;
+  gap: 10px;
+}
+
+.radio-group > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.price-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.price-row input[type="number"] {
+  flex: 1;
+}
+
+/* 버튼 공통 스타일 */
+button.submit,
+.copy-btn {
+  font-size: 14px;
+  padding: 8px 14px;
+  height: 38px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #333;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+button.submit {
+  background: #007bff;
+  margin-left: 10px;
+  color: white;
+}
+
+button.submit:hover {
+  background: #0056b3;
+}
+
+.copy-btn {
+  background: #ffc107;
+  margin-left: 10px;
+}
+
+.copy-btn:hover {
+  background: #e0a800;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.results label {
+  font-weight: normal;
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.results span {
+  display: block;
+  padding: 8px 10px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 15px;
+  user-select: text;
+  min-height: 24px;
+  min-width: 100px;
+}
+
+/* 적정 입찰가 특별 스타일 */
+#regular_price {
+  background: #fff3cd;
+  border-color: #f0ad4e;
+  font-weight: bold;
+  color: #333;
+  min-width: 140px;
+  text-align: center;
+  flex: 1;
+  /* padding, border-radius, font-size는 .results span과 동일하므로 중복 생략 */
+}
+
+.regular-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* 제목 스타일 (추가 섹션용) */
+.section-title {
+  font-size: 16px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 4px;
+}

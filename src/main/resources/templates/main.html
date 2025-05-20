@@ -1,0 +1,39 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="/css/notices.css">
+</head>
+<body>
+<!-- 각페이지 항목-->
+<div layout:fragment="content">
+    <div class="notice" id="notice">
+        <h2 style="text-align:center;">📢 공지사항</h2>
+        <ul id="notice-list"></ul>
+    </div>
+
+    <script th:inline="javascript">
+        $(function () {
+            let noticesData = [[${notices}]];
+            let noticesParsing = JSON.parse(noticesData);
+            const ul = document.getElementById('notice-list');
+            noticesParsing.forEach(notice => {
+
+                const li = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = notice.Link;
+                link.innerHTML = `<strong>${notice.Title}</strong><br><small>${formatDate(notice.Date)}</small>`;
+                link.style.textDecoration = 'none';
+                link.style.color = 'inherit';
+
+                li.appendChild(link);
+                ul.appendChild(li);
+
+            });
+        });
+    </script>
+</div>
+</body>
+</html>

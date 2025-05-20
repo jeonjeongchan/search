@@ -1,0 +1,115 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>입찰 계산기</title>
+    <link rel="stylesheet" href="/css/bid.css">
+</head>
+<body>
+<!-- 각페이지 항목-->
+<div layout:fragment="content">
+    <h2 style="text-align: center;">입찰 계산기</h2>
+    <form class="bid_calculator">
+        <div>
+            <label>가격</label>
+            <div class="price-row">
+                <input type="number" name="price" min="50" value="">
+                <button type="submit" class="button-style submit">계산</button>
+            </div>
+        </div>
+
+        <div>
+            <label>인원</label>
+            <div class="radio-group">
+                <div>
+                    <label>4명</label>
+                    <input type="radio" name="count" value="4" checked>
+                </div>
+                <div>
+                    <label>8명</label>
+                    <input type="radio" name="count" value="8">
+                </div>
+                <div>
+                    <label>16명</label>
+                    <input type="radio" name="count" value="16">
+                </div>
+            </div>
+        </div>
+
+        <div class="results">
+            <div style="grid-column: 1 / span 2;">
+                <label for="regular_price">적정 입찰가</label>
+                <div class="regular-price-row">
+                    <span id="regular_price"></span>
+                    <button type="button" class="copy-btn" onclick="copyPrice()">복사</button>
+                </div>
+            </div>
+
+            <div>
+                <label>적정 입찰가 분배금</label>
+                <span id="rp_distribution"></span>
+            </div>
+
+            <div>
+                <label>손익 분기점</label>
+                <span id="bep"></span>
+            </div>
+
+            <div>
+                <label>손익 분기점 분배금</label>
+                <span id="distribution"></span>
+            </div>
+
+            <div>
+                <label>입찰 한번 더</label>
+                <span id="one_more"></span>
+            </div>
+
+            <div>
+                <label>수수료</label>
+                <span id="fee"></span>
+            </div>
+        </div>
+    </form>
+    <script th:inline="javascript">
+        // 복사 기능
+        function copyPrice() {
+            const text = $('#regular_price').text();
+            navigator.clipboard.writeText(text).then(function () {
+                alert('복사되었습니다.');
+            });
+        }
+
+        $(function () {
+            $('.bid_calculator').on('submit', function (e) {
+                // 폼 제출 방지 (서버 전송 X)
+                e.preventDefault();
+                debugger;
+                let price = $('input[name="price"]').val();
+                let people = $('input[name="count"]:checked').val();
+                // 수수료
+                let fee = Math.round(price * 0.05);
+                // 손익 분기점
+                let bep = Math.floor((price - fee) * ((people - 1) / people));
+                // 손익 분기점 분배금
+                let distribution = Math.floor(bep / (people - 1));
+                // 적정 입찰가
+                let regular_price = Math.floor(bep / 1.1);
+                // 적정 입찰가 분배금
+                let rp_distribution = Math.floor(regular_price / (people - 1));
+                // 입찰 한번더 가능한 금액
+                let one_more = Math.floor(regular_price / 1.1);
+
+                $('#bep').text(bep);
+                $('#fee').text(fee);
+                $('#distribution').text(distribution);
+                $('#regular_price').text(regular_price);
+                $('#rp_distribution').text(rp_distribution);
+                $('#one_more').text(one_more);
+            });
+        });
+    </script>
+</div>
+</body>
+</html>

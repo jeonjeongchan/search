@@ -1,0 +1,50 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>경매장</title>
+    <link rel="stylesheet" href="/css/market.css">
+</head>
+<body>
+<!-- 각페이지 항목-->
+<div layout:fragment="content">
+    <h2 style="text-align: center;">경매장</h2>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th class="icon-cell"></th>
+                <th>이름</th>
+                <th>최저가</th>
+            </tr>
+            </thead>
+            <tbody id="market-table-body">
+            <!-- JavaScript로 추가 -->
+            </tbody>
+        </table>
+    </div>
+    <!-- JavaScript 작성란 -->
+    <script th:inline="javascript">
+        $(document).ready(function () {
+            let marketData = [[${marketInfo}]];
+            let marketParsing = JSON.parse(marketData);
+
+            marketParsing.Items.forEach(market => {
+
+                $('#market-table-body').append(`
+                    <tr>
+                        <td class="icon-cell">
+                            <img class="icon-img" src="${market.Icon}" alt="아이템 아이콘">
+                        </td>
+                        <td>${market.Name}</td>
+                        <td>${market.CurrentMinPrice} 골드</td>
+                    </tr>
+                `);
+
+            });
+        });
+    </script>
+</div>
+</body>
+</html>
