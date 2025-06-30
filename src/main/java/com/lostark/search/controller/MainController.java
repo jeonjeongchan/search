@@ -1,11 +1,12 @@
 package com.lostark.search.controller;
 
 import com.lostark.search.service.MainService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class MainController {
@@ -20,11 +21,14 @@ public class MainController {
     @GetMapping("/")
     public String getMain(Model model) {
 
-        // Lost Ark API에서 경매장 정보 가져오기
+        // 공지사항
         String notices = mainService.getNotices();
+        String events = mainService.getEvents();
+        String gameContents = mainService.getGameContents();
 
-        // 모델에 데이터를 담아 뷰 템플릿에 전달
         model.addAttribute("notices", notices);
+        model.addAttribute("events", events);
+        model.addAttribute("gameContents", gameContents);
 
         return "main";
     }

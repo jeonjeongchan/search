@@ -1,8 +1,8 @@
-h2 {
+.bid h2 {
   margin-bottom: 30px; /* 제목 아래 간격 */
 }
 
-form.bid_calculator {
+.bid form.bid_calculator {
   max-width: 600px;
   margin: 30px auto;
   padding: 20px;
@@ -13,48 +13,48 @@ form.bid_calculator {
 }
 
 /* form 내부 각 블록 간격 */
-form.bid_calculator > div {
+.bid form.bid_calculator > div {
   margin-bottom: 16px;
 }
 
-label {
+.bid label {
   display: block;
   font-weight: bold;
   margin-bottom: 6px;
   font-size: 14px;
 }
 
-input[type="number"] {
+.bid input[type="number"] {
   width: 100%;
   padding: 6px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.radio-group {
+.bid .radio-group {
   display: flex;
   gap: 10px;
 }
 
-.radio-group > div {
+.bid .radio-group > div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.price-row {
+.bid .price-row {
   display: flex;
   gap: 10px;
   align-items: flex-end;
 }
 
-.price-row input[type="number"] {
+.bid .price-row input[type="number"] {
   flex: 1;
 }
 
 /* 버튼 공통 스타일 */
-button.submit,
-.copy-btn {
+.bid button.submit,
+.bid .copy-btn {
   font-size: 14px;
   padding: 8px 14px;
   height: 38px;
@@ -70,39 +70,39 @@ button.submit,
   user-select: none;
 }
 
-button.submit {
+.bid button.submit {
   background: #007bff;
   margin-left: 10px;
   color: white;
 }
 
-button.submit:hover {
+.bid button.submit:hover {
   background: #0056b3;
 }
 
-.copy-btn {
+.bid .copy-btn {
   background: #ffc107;
   margin-left: 10px;
 }
 
-.copy-btn:hover {
+.bid .copy-btn:hover {
   background: #e0a800;
 }
 
-.results {
+.bid .results {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
 
-.results label {
+.bid .results label {
   font-weight: normal;
   margin: 0;
   font-size: 13px;
   color: #666;
 }
 
-.results span {
+.bid .results span {
   display: block;
   padding: 8px 10px;
   background: #f9f9f9;
@@ -115,7 +115,7 @@ button.submit:hover {
 }
 
 /* 적정 입찰가 특별 스타일 */
-#regular_price {
+.bid #regular_price {
   background: #fff3cd;
   border-color: #f0ad4e;
   font-weight: bold;
@@ -123,10 +123,9 @@ button.submit:hover {
   min-width: 140px;
   text-align: center;
   flex: 1;
-  /* padding, border-radius, font-size는 .results span과 동일하므로 중복 생략 */
 }
 
-.regular-price-row {
+.bid .regular-price-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -134,7 +133,7 @@ button.submit:hover {
 }
 
 /* 제목 스타일 (추가 섹션용) */
-.section-title {
+.bid .section-title {
   font-size: 16px;
   margin-top: 20px;
   margin-bottom: 10px;

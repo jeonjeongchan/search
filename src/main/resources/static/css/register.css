@@ -1,0 +1,71 @@
+.register {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.register h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.register form > div {
+  margin-bottom: 20px;
+}
+
+.register label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.register input[type="text"],
+.register input[type="password"],
+.register input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.register input:focus {
+  border-color: #7aa9ff;
+  outline: none;
+}
+
+.register button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4a90e2;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register button:hover {
+  background-color: #357bd8;
+}
+
+.register p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.register p a {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register p a:hover {
+  text-decoration: underline;
+}

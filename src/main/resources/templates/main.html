@@ -4,35 +4,43 @@
       layout:decorate="~{layout}">
 <head>
     <title></title>
-    <link rel="stylesheet" href="/css/notices.css">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
 <!-- 각페이지 항목-->
 <div layout:fragment="content">
-    <div class="notice" id="notice">
-        <h2 style="text-align:center;">📢 공지사항</h2>
-        <ul id="notice-list"></ul>
+    <div>
+        <div class="main page_content">
+            <div class="notice" id="notice">
+                <h3 style="text-align:center;">📢 공지사항</h3>
+                <ul id="notice-list"></ul>
+                <div id="pagination-wrapper">
+                    <div id="pagination"></div>
+                </div>
+            </div>
+            <div id="schedule" class="schedule">
+                <h3 style="text-align:center;">오늘의 스케쥴</h3>
+                <div id="today-date"></div>
+                <div id="schedule-1" class="schedule">
+                    <h4 style="text-align:center;">일일 컨텐츠</h4>
+                    <p id="today-content"></p>
+                </div>
+                <div id="schedule-2" class="schedule">
+                    <h4 style="text-align:center;">모험 섬</h4>
+                    <ul id="gameContents-list"></ul>
+                </div>
+                <div id="schedule-3" class="schedule">
+                    <h4 style="text-align:center;">진행중 이벤트</h4>
+                    <ul id="event-list"></ul>
+                </div>
+            </div>
+        </div>
     </div>
-
+    <script src="/js/main.js"></script>
     <script th:inline="javascript">
-        $(function () {
-            let noticesData = [[${notices}]];
-            let noticesParsing = JSON.parse(noticesData);
-            const ul = document.getElementById('notice-list');
-            noticesParsing.forEach(notice => {
-
-                const li = document.createElement('li');
-                const link = document.createElement('a');
-                link.href = notice.Link;
-                link.innerHTML = `<strong>${notice.Title}</strong><br><small>${formatDate(notice.Date)}</small>`;
-                link.style.textDecoration = 'none';
-                link.style.color = 'inherit';
-
-                li.appendChild(link);
-                ul.appendChild(li);
-
-            });
-        });
+        const notices = [[${notices}]];
+        const events = [[${events}]];
+        const gameContents = [[${gameContents}]];
     </script>
 </div>
 </body>

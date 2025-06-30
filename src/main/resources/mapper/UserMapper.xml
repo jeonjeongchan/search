@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lostark.search.mapper.UserMapper">
+    <select id="findByUsername" resultType="com.lostark.search.domain.User">
+        SELECT * FROM user WHERE username = #{username}
+    </select>
+
+    <insert id="save" parameterType="com.lostark.search.domain.User">
+        INSERT INTO user (username, password)
+        VALUES (#{username}, #{password})
+    </insert>
+
+    <select id="checkRegister" resultType="int" parameterType="string">
+        SELECT COUNT(*)
+        FROM user
+        WHERE username = #{username}
+    </select>
+
+</mapper>

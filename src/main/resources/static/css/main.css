@@ -1,0 +1,172 @@
+/*body {*/
+/*    background-color: #f5f7fa;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
+
+/* 제목 스타일 */
+h3 {
+    margin: 40px 0 20px;
+    text-align: center;
+    font-size: 26px;
+    color: #333;
+}
+
+/* 공지사항 영역 */
+.notice {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    min-height: 500px;
+}
+
+/* 스케줄 영역 */
+.schedule {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.schedule-1 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* 공지 리스트 */
+#notice-list {
+    list-style: none;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+#notice-list li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    transition: background 0.3s;
+}
+
+#notice-list li:last-child {
+    border-bottom: none;
+}
+
+#notice-list li:hover {
+    background: #f0f8ff;
+}
+
+#notice-list strong {
+    display: block;
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+#notice-list small {
+    color: #888;
+    font-size: 0.9em;
+}
+
+#notice-list a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* 날짜/내용 중앙 정렬 */
+#today-date,
+#today-content {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 20px;
+}
+
+/* 페이지네이션 */
+.page-btn {
+    margin: 0 5px;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.page-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.page-btn.active {
+    background-color: #333;
+    color: white;
+    font-weight: bold;
+}
+
+#pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60px;
+    margin-top: 30px;
+}
+
+/* 이벤트 리스트 */
+#event-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+    list-style-type: none;
+}
+
+#event-list li {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    padding: 10px;
+    transition: transform 0.2s;
+}
+
+#event-list li:hover {
+    transform: translateY(-3px);
+}
+
+#event-list li img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+#event-list li p {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+#event-list li a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* 게임 콘텐츠 리스트 */
+#gameContents-list {
+    list-style-type: none;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 20px;
+}

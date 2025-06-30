@@ -1,0 +1,51 @@
+.auction {
+  padding: 40px 20px;
+  margin-bottom: 40px;
+}
+
+.auction h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auction-tables {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* 테이블 사이 여백 */
+  justify-content: space-between;
+}
+
+.auction-table {
+  flex: 1 1 48%; /* 반반 비율로 늘어나며, 여백 포함 */
+  min-width: 300px; /* 좁아졌을 때 깨지지 않도록 최소값 */
+  border-radius: 8px;
+}
+
+.auction-table table {
+  width: 100%; /* 테이블이 해당 영역에 맞게 */
+}
+
+
+
+.auction th {
+  background-color: #f2f2f2;
+  text-align: left;
+  padding: 15px;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+
+.auction td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+.auction tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.auction .icon-cell {
+  width: 40px;
+  text-align: center;
+}

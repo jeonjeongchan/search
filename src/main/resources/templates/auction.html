@@ -1,0 +1,54 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>보석</title>
+    <link rel="stylesheet" href="/css/auction.css">
+</head>
+<body>
+<!-- 각페이지 항목-->
+<div layout:fragment="content">
+    <div class="auction page_content">
+        <h2 style="text-align: center;">보석</h2>
+        <div class="auction-tables">
+            <div class="auction-table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="icon-cell"></th>
+                        <th>이름</th>
+                        <th>최저가</th>
+                    </tr>
+                    </thead>
+                    <tbody id="damage-gem-table-body">
+                    <!-- JS로 채움 -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="auction-table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="icon-cell"></th>
+                        <th>이름</th>
+                        <th>최저가</th>
+                    </tr>
+                    </thead>
+                    <tbody id="coolDown-gem-table-body">
+                    <!-- JS로 채움 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript 작성란 -->
+    <script src="/js/auction.js"></script>
+    <script th:inline="javascript">
+        const damageGems = [[${damageGems}]];
+        const coolDownGems = [[${coolDownGems}]];
+    </script>
+</div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.lostark.search.repository.mapper;
+package com.lostark.search.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

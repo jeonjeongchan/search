@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.client.HttpClientErrorException;
 
 @Controller
 public class MarketController {
@@ -18,11 +19,15 @@ public class MarketController {
 
     @GetMapping("/market")
     public String getMarket(Model model) {
-        // Lost Ark API에서 경매장 정보 가져오기
-        String marketInfo = marketService.getMarket();
 
-        // 모델에 데이터를 담아 뷰 템플릿에 전달
-        model.addAttribute("marketInfo", marketInfo);
+        try {
+            String marketInfo = marketService.getMarket();
+            model.addAttribute("marketInfo", marketInfo);
+        } catch (HttpClientErrorException.Unauthorized e) {
+            model.addAttribute("error", "API Key가 유효하지 않습니다.");
+        } catch (Exception e) {
+            model.addAttribute("error", "조회 중 오류가 발생했습니다.");
+        }
 
         return "market";
     }

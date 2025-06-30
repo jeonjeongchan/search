@@ -1,0 +1,22 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="/css/character.css">
+</head>
+<body>
+<!-- 각페이지 항목-->
+<div layout:fragment="content">
+    <div class="character page_content">
+
+    </div>
+    <script src="/js/character.js"></script>
+    <script th:inline="javascript">
+        const characterAll = [[${characterAll}]];
+        const siblings = [[${siblings}]];
+    </script>
+</div>
+</body>
+</html>
