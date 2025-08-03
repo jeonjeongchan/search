@@ -28,11 +28,15 @@ public class CharacterController {
         //String characterSkills = characterService.getCharacterSkills(characterName, session);
         String characterAll = characterService.getCharacterAll(characterName, session);
         String siblings = characterService.getCharacterSiblings(characterName, session);
+        //String guildMember = characterService.getGuildMember(characterName, session);
 
         // 모델에 데이터를 담아 뷰 템플릿에 전달
         model.addAttribute("characterInfo", characterInfo);
         model.addAttribute("characterAll", characterAll);
         model.addAttribute("siblings", siblings);
+        //model.addAttribute("guildMember", guildMember);
+
+        //String pyj = "멍청이";
         //model.addAttribute("characterSkills ", characterSkills);
 
         // 반환할 뷰 템플릿 이름 (src/main/resources/templates 폴더에 있는 HTML 파일)

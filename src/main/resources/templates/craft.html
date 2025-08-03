@@ -3,17 +3,15 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-    <title>각인서</title>
-    <link rel="stylesheet" href="/css/market.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <title>제작</title>
+<!--    <link rel="stylesheet" href="/css/craft.css">-->
 </head>
 <body>
 <!-- 각페이지 항목-->
 <div layout:fragment="content">
-    <div class="market page_content">
-        <h2 style="text-align: center;">각인서</h2>
-        <div class="market-section">
+    <div class="craft page_content">
+        <h2 style="text-align: center;">제작</h2>
+        <div class="craft-section">
             <div>
                 <table>
                     <thead>
@@ -21,10 +19,9 @@
                         <th class="icon-cell"></th>
                         <th>이름</th>
                         <th>최저가</th>
-                        <th>가격 변동 (하루)</th>
                     </tr>
                     </thead>
-                    <tbody id="market-table-body">
+                    <tbody id="craft-table-body">
                     <!-- JavaScript로 추가 -->
                     </tbody>
                 </table>
@@ -33,9 +30,9 @@
     </div>
 
     <!-- JavaScript 작성란 -->
-    <script src="/js/market.js"></script>
+    <script src="/js/craft.js"></script>
     <script th:inline="javascript">
-        const marketInfo = [[${marketInfo}]];
+        // const marketInfo = [[${marketInfo}]];
     </script>
 </div>
 </body>

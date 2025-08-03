@@ -38,6 +38,13 @@ public class CharacterService {
     }
 
 
+    public String getGuildMemeber(String characterName, HttpSession session) {
+        // 응답 본문 반환
+        return setResponse(Constants.GUILD_URL, characterName).getBody();
+    }
+
+
+
 
     public ResponseEntity<String> setResponse (String getURL, String characterName) {
         // Http 헤더 설정

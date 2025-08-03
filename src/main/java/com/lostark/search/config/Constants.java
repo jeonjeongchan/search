@@ -19,6 +19,8 @@ public class Constants {
     public static final String AUCTIONS_URL = API_URL + "/auctions/items";
     public static final String GAME_CONTENTS_URL = API_URL + "/gamecontents/calendar";
 
+    public static final String GUILD_URL = API_URL + "/guilds/rankings";
+
 
     // 보석 레벨
     public static String toStringDamage(String level) {

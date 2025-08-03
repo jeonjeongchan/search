@@ -13,6 +13,23 @@ function marketInit() {
 
         marketParsing.Items.forEach(market => {
 
+            const diff = market.CurrentMinPrice - market.YDayAvgPrice;
+
+            const formattedDiff = diff.toLocaleString();
+            let icon = '';
+            let color = '';
+
+            if (diff > 0) {
+                icon = '<i class="fa-solid fa-caret-up"></i>'; // 삼각형 느낌
+                color = 'green';
+            } else if (diff < 0) {
+                icon = '<i class="fa-solid fa-caret-down"></i>';
+                color = 'red';
+            } else {
+                icon = '<i class="fa-solid fa-minus"></i>';
+                color = 'gray';
+            }
+
             $marketTable.append(`
                     <tr>
                         <td class="icon-cell">
@@ -20,6 +37,7 @@ function marketInit() {
                         </td>
                         <td>${market.Name}</td>
                         <td>${market.CurrentMinPrice.toLocaleString()} 골드</td>
+                        <td><span style="color:${color}">${formattedDiff}&nbsp;&nbsp;&nbsp;${icon}</span></td>
                     </tr>
                 `);
 

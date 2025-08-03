@@ -19,6 +19,24 @@ function getGemsInit() {
 
         damageGemsParsing.forEach(gem => {
 
+            // const diff = gem.AuctionInfo.BuyPrice - market.YDayAvgPrice;
+            //
+            // const formattedDiff = diff.toLocaleString();
+            // let icon = '';
+            // let color = '';
+            //
+            // if (diff > 0) {
+            //     icon = '<i class="fa-solid fa-caret-up"></i>'; // 삼각형 느낌
+            //     color = 'green';
+            // } else if (diff < 0) {
+            //     icon = '<i class="fa-solid fa-caret-down"></i>';
+            //     color = 'red';
+            // } else {
+            //     icon = '<i class="fa-solid fa-minus"></i>';
+            //     color = 'gray';
+            // }
+            //
+
             console.log(gem.Name);
             $damageGemTable.append(`
                     <tr>
@@ -26,7 +44,7 @@ function getGemsInit() {
                             <img class="icon-img" src="${gem.Icon}" alt="아이템 아이콘">
                         </td>
                         <td>${gem.Name}</td>
-                        <td>${gem.AuctionInfo.BuyPrice.toLocaleString()} 골드</td>
+                        <td>${gem.AuctionInfo.BuyPrice.toLocaleString()} 골드</td>=
                     </tr>
                 `);
 

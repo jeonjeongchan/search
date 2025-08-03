@@ -11,9 +11,11 @@ function characterInit() {
 
         let characterAllParsing = JSON.parse(characterAllData);
         let siblingsParsing = JSON.parse(siblings);
+        //let guildMemberParsing = JSON.parse(guildMember);
 
         console.log(characterAllParsing);
         console.log(siblingsParsing);
+        //console.log(guildMemberParsing);
 
         // 전체 화면
         let $character = $('.character');
@@ -32,48 +34,67 @@ function characterInit() {
 
         // 프로필
         let $characterProfile = $('.character-profile');
+        // $characterProfile.append(`
+        //            <div class="profile-field">
+        //               <img src="${characterAllParsing.ArmoryProfile.CharacterImage}" alt="캐릭터 이미지">
+        //            </div>
+        //           <div class="profile-field">
+        //             <span class="label">아이템 레벨</span>
+        //             <span class="value">${characterAllParsing.ArmoryProfile.ItemAvgLevel}</span>
+        //           </div>
+        //           <div class="profile-field">
+        //             <span class="label">칭호</span>
+        //             <span class="value">${characterAllParsing.ArmoryProfile.Title}</span>
+        //           </div>
+        //           <div class="profile-field">
+        //             <span class="label">서버</span>
+        //             <span class="value">${characterAllParsing.ArmoryProfile.ServerName}</span>
+        //           </div>
+        //           <div class="profile-field">
+        //             <span class="label">클래스</span>
+        //             <span class="value">${characterAllParsing.ArmoryProfile.CharacterClassName}</span>
+        //           </div>
+        //           <div class="profile-field">
+        //             <span class="label">전투레벨</span>
+        //             <span class="value">${characterAllParsing.ArmoryProfile.CombatPower}</span>
+        //           </div>
+        //           <div class="profile-field">
+        //             <span class="label">길드이름</span>
+        //             <span class="value">${characterAllParsing.ArmoryProfile.GuildName}</span>
+        //           </div>
+        //           <div class="profile-field">
+        //             <span class="label">원정대 레벨</span>
+        //             <span class="value">${characterAllParsing.ArmoryProfile.ExpeditionLevel}</span>
+        //           </div>
+        //           <div class="profile-field">
+        //             <span class="label">영지 이름</span>
+        //             <span class="value">${characterAllParsing.ArmoryProfile.TownName}</span>
+        //           </div>
+        //           <div class="profile-field">
+        //             <span class="label">영지 레벨</span>
+        //             <span class="value">${characterAllParsing.ArmoryProfile.TownLevel}</span>
+        //           </div>
+        //
+        //
+        //         `);
+
         $characterProfile.append(`
-                   <div class="profile-field">
-                      <img src="${characterAllParsing.ArmoryProfile.CharacterImage}" alt="캐릭터 이미지">  
-                   </div>
-                  <div class="profile-field">
-                    <span class="label">아이템 레벨</span>
-                    <span class="value">${characterAllParsing.ArmoryProfile.ItemAvgLevel}</span>
+                  <div class="profile-card column-layout">
+                    <div class="profile-image">
+                      <img src="${characterAllParsing.ArmoryProfile.CharacterImage}" alt="캐릭터 이미지">
+                    </div>
+                    <div class="profile-details">
+                      <div class="profile-field"><span class="label">아이템 레벨</span><span class="value">${characterAllParsing.ArmoryProfile.ItemAvgLevel}</span></div>
+                      <div class="profile-field"><span class="label">칭호</span><span class="value">${characterAllParsing.ArmoryProfile.Title ? characterAllParsing.ArmoryProfile.Title : '-'}</span></div>
+                      <div class="profile-field"><span class="label">서버</span><span class="value">${characterAllParsing.ArmoryProfile.ServerName}</span></div>
+                      <div class="profile-field"><span class="label">클래스</span><span class="value">${characterAllParsing.ArmoryProfile.CharacterClassName}</span></div>
+                      <div class="profile-field"><span class="label">전투레벨</span><span class="value">${characterAllParsing.ArmoryProfile.CombatPower}</span></div>
+                      <div class="profile-field"><span class="label">길드이름</span><span class="value">${characterAllParsing.ArmoryProfile.GuildName ? characterAllParsing.ArmoryProfile.GuildName : '-'}</span></div>
+                      <div class="profile-field"><span class="label">원정대 레벨</span><span class="value">${characterAllParsing.ArmoryProfile.ExpeditionLevel}</span></div>
+                      <div class="profile-field"><span class="label">영지 이름</span><span class="value">${characterAllParsing.ArmoryProfile.TownName}</span></div>
+                      <div class="profile-field"><span class="label">영지 레벨</span><span class="value">${characterAllParsing.ArmoryProfile.TownLevel}</span></div>
+                    </div>
                   </div>
-                  <div class="profile-field">
-                    <span class="label">칭호</span>
-                    <span class="value">${characterAllParsing.ArmoryProfile.Title}</span>
-                  </div>
-                  <div class="profile-field">
-                    <span class="label">서버</span>
-                    <span class="value">${characterAllParsing.ArmoryProfile.ServerName}</span>
-                  </div>
-                  <div class="profile-field">
-                    <span class="label">클래스</span>
-                    <span class="value">${characterAllParsing.ArmoryProfile.CharacterClassName}</span>
-                  </div>
-                  <div class="profile-field">
-                    <span class="label">전투레벨</span>
-                    <span class="value">${characterAllParsing.ArmoryProfile.CombatPower}</span>
-                  </div>
-                  <div class="profile-field">
-                    <span class="label">길드이름</span>
-                    <span class="value">${characterAllParsing.ArmoryProfile.GuildName}</span>
-                  </div>
-                  <div class="profile-field">
-                    <span class="label">원정대 레벨</span>
-                    <span class="value">${characterAllParsing.ArmoryProfile.ExpeditionLevel}</span>
-                  </div>
-                  <div class="profile-field">
-                    <span class="label">영지 이름</span>
-                    <span class="value">${characterAllParsing.ArmoryProfile.TownName}</span>
-                  </div>
-                  <div class="profile-field">
-                    <span class="label">영지 레벨</span>
-                    <span class="value">${characterAllParsing.ArmoryProfile.TownLevel}</span>
-                  </div>
-
-
                 `);
 
         let $section2 = $('.character-section-2');
@@ -99,109 +120,391 @@ function characterInit() {
             // 능력치 버튼
             if (type === "ability") {
                 $content.append(`
-                    <div class="armoryEquipment"></div>
-                    <div class="stats"></div>
-                    <div class="Tendencies"></div>
-                    <div class="engravings"></div>
+                    <div class="armoryEquipment">
+                        <div class="equipment-window">
+                            <div class="equipment clothes">
+                                <div class="equipment-row">
+                                    <div class="equipment-slot hat">
+                                        <div class="slot-label">머리</div>
+                                        <div class="item-icon"></div>
+                                    </div>
+                                    <div class="equipment-info hat">
+                                        <div class="info-title"></div>
+                                        <div class="info-content"></div>
+                                     </div>                                   
+                                </div>
+                                <div class="equipment-row">
+                                    <div class="equipment-slot pauldron">
+                                        <div class="slot-label">견갑</div>
+                                        <div class="item-icon"></div>
+                                    </div>
+                                    <div class="equipment-info">
+                                        <div class="info-title"></div>
+                                        <div class="info-content"></div>
+                                     </div>  
+                                </div>
+                                <div class="equipment-row">
+                                    <div class="equipment-slot chest">
+                                        <div class="slot-label">상의</div>
+                                        <div class="item-icon"></div>
+                                    </div>
+                                     <div class="equipment-info">
+                                        <div class="info-title"></div>
+                                        <div class="info-content"></div>
+                                     </div> 
+                                </div>
+                                <div class="equipment-row">
+                                    <div class="equipment-slot pants">
+                                        <div class="slot-label">하의</div>
+                                        <div class="item-icon"></div>
+                                    </div>
+                                     <div class="equipment-info">
+                                        <div class="info-title"></div>
+                                        <div class="info-content"></div>
+                                     </div> 
+                                </div>
+                                <div class="equipment-row">
+                                    <div class="equipment-slot gloves">
+                                        <div class="slot-label">장갑</div>
+                                        <div class="item-icon"></div>
+                                    </div>
+                                     <div class="equipment-info">
+                                        <div class="info-title"></div>
+                                        <div class="info-content"></div>
+                                     </div> 
+                                </div>
+                                <div class="equipment-row">
+                                    <div class="equipment-slot weapon">
+                                        <div class="slot-label">무기</div>
+                                        <div class="item-icon"></div>
+                                    </div>
+                                     <div class="equipment-info">
+                                        <div class="info-title"></div>
+                                        <div class="info-content"></div>
+                                     </div> 
+                                </div>
+                            </div>
+                            <div class="equipment accessories">                            
+                                <div class="equipment-row">
+                                    <div class="equipment-slot necklace">
+                                        <div class="slot-label">목걸이</div>
+                                        <div class="item-icon"></div>
+                                    </div>
+                                     <div class="equipment-info">
+                                        <div class="info-title"></div>
+                                        <div class="info-content"></div>
+                                     </div> 
+                                </div>
+                                <div class="equipment-row">
+                                    <div class="equipment-slot earring1">
+                                        <div class="slot-label">귀걸이1</div>
+                                        <div class="item-icon"></div>
+                                    </div>
+                                     <div class="equipment-info">
+                                        <div class="info-title"></div>
+                                        <div class="info-content"></div>
+                                     </div> 
+                                </div>
+                                <div class="equipment-row">
+                                    <div class="equipment-slot earring2">
+                                        <div class="slot-label">귀걸이2</div>
+                                        <div class="item-icon"></div>
+                                    </div>
+                                     <div class="equipment-info">
+                                        <div class="info-title"></div>
+                                        <div class="info-content"></div>
+                                     </div> 
+                                </div>
+                                <div class="equipment-row">
+                                    <div class="equipment-slot ring1">
+                                        <div class="slot-label">반지1</div>
+                                        <div class="item-icon"></div>
+                                    </div>
+                                     <div class="equipment-info">
+                                        <div class="info-title"></div>
+                                        <div class="info-content"></div>
+                                     </div> 
+                                </div>
+                                <div class="equipment-row">
+                                    <div class="equipment-slot ring2">
+                                        <div class="slot-label">반지2</div>
+                                        <div class="item-icon"></div>
+                                    </div>
+                                     <div class="equipment-info">
+                                        <div class="info-title"></div>
+                                        <div class="info-content"></div>
+                                     </div> 
+                                </div>
+                                <div class="equipment-row">
+                                    <div class="equipment-slot abilityStone">
+                                        <div class="slot-label">스톤</div>
+                                        <div class="item-icon"></div>
+                                    </div>
+                                     <div class="equipment-info">
+                                        <div class="info-title"></div>
+                                        <div class="info-content"></div>
+                                     </div> 
+                                </div>
+                                <div class="equipment-row">
+                                    <div class="equipment-slot bracelet">
+                                        <div class="slot-label">팔찌</div>
+                                        <div class="item-icon"></div>
+                                    </div>
+                                     <div class="equipment-info">
+                                        <div class="info-title"></div>
+                                        <div class="info-content"></div>
+                                     </div> 
+                                </div>
+                            </div>
+                            <div class="equipment special">
+                                <div class="equipment-row">
+                                    <div class="equipment-slot amulet">
+                                        <div class="slot-label">부적</div>
+                                        <div class="item-icon"></div>
+                                    </div>
+                                     <div class="equipment-info">
+                                        <div class="info-title"></div>
+                                        <div class="info-content"></div>
+                                     </div> 
+                                </div>
+                                <div class="equipment-row">
+                                    <div class="equipment-slot compass">
+                                        <div class="slot-label">나침반</div>
+                                        <div class="item-icon"></div>
+                                    </div>
+                                     <div class="equipment-info">
+                                        <div class="info-title"></div>
+                                        <div class="info-content"></div>
+                                     </div> 
+                                </div>
+                                <div class="equipment-row">
+                                    <div class="equipment-slot insignia">
+                                        <div class="slot-label">문장</div>
+                                        <div class="item-icon"></div>
+                                    </div>
+                                     <div class="equipment-info">
+                                        <div class="info-title"></div>
+                                        <div class="info-content"></div>
+                                     </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex;  padding: 20px;">
+                        <div class="stats" style="padding: 20px;"></div>
+                        <div class="tendencies" style="padding: 20px;"></div>
+                        <div class="engravings" style="padding: 20px;"></div>
+                    </div>
                     <div class="avatars"></div>
                     <div class="gems"></div>
-                    <div class="cards" style="display:flex;"></div>
-                    <div class="cards-set-list"></div>
-                    <div class="arkPassives" ></div>    
+                    <div class="cards">
+                        <div class="cards-container">
+                            <div class="card-list"></div>
+                            <div class="cards-set-list"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="arkPassives" >
+                        <div class="arkPassives-container">
+                            <div class="arkPassives-points"></div>
+                            <div class="arkPassives-contents"></div>
+                        </div>
+                    </div>    
                     <div class="custom-tooltip" style="display: none; position: absolute;"></div> 
                 `);
 
-                characterAllParsing.ArmoryEquipment.forEach(equipment => {
+
+                const typeLayoutMap = {
+                    '투구': '.armoryEquipment .hat .item-icon',
+                    '어깨': '.armoryEquipment .pauldron .item-icon',
+                    '상의': '.armoryEquipment .chest .item-icon',
+                    '하의': '.armoryEquipment .pants .item-icon',
+                    '장갑': '.armoryEquipment .gloves .item-icon',
+                    '무기': '.armoryEquipment .weapon .item-icon',
+                    '목걸이': '.armoryEquipment .necklace .item-icon',
+                    '귀걸이1': '.armoryEquipment .earring1 .item-icon',
+                    '귀걸이2': '.armoryEquipment .earring2 .item-icon',
+                    '반지1': '.armoryEquipment .ring1 .item-icon',
+                    '반지2': '.armoryEquipment .ring2 .item-icon',
+                    '어빌리티 스톤': '.armoryEquipment .abilityStone .item-icon',
+                    '팔찌': '.armoryEquipment .bracelet .item-icon',
+                    '나침반': '.armoryEquipment .compass .item-icon',
+                    '부적': '.armoryEquipment .amulet .item-icon',
+                    '문장': '.armoryEquipment .insignia .item-icon',
+                };
+
+                // 타입별 등장 횟수를 기록하기 위한 카운터
+                const typeCounter = {};
+
+                characterAllParsing.ArmoryEquipment.forEach((equipment) => {
+                    let type = equipment.Type;
+
+                    // 귀걸이, 반지처럼 여러 개 있을 수 있는 타입은 인덱스를 붙임
+                    if (['귀걸이', '반지'].includes(type)) {
+                        if (!typeCounter[type]) {
+                            typeCounter[type] = 1;
+                        } else {
+                            typeCounter[type]++;
+                        }
+                        type = `${type}${typeCounter[type]}`; // 예: 귀걸이1, 귀걸이2
+                    }
+
+                    // const targetSelector = typeLayoutMap[type];
+                    //
+                    // if (!targetSelector) {
+                    //     console.warn('Unknown or unmapped type:', type);
+                    //     return;
+                    // }
+                    //
+                    // const $tooltipDiv = $('<div class="item-tooltip-trigger"></div>')
+                    //     .data('tooltip', JSON.parse(equipment.Tooltip))
+                    //     .append(`<img src="${equipment.Icon}" alt="">`);
+                    //
+                    // const $target = $(targetSelector);
+                    // $target.append($tooltipDiv);
+                    const targetSelector = typeLayoutMap[type];
+
+                    if (!targetSelector) {
+                        console.warn('Unknown or unmapped type:', type);
+                        return;
+                    }
 
                     const $tooltipDiv = $('<div class="item-tooltip-trigger"></div>')
-                        .data('tooltip', JSON.parse(equipment.Tooltip));
+                        .data('tooltip', JSON.parse(equipment.Tooltip))
+                        .append(`<img src="${equipment.Icon}" alt="">`);
 
-                    // 이 안에 콘텐츠를 넣음
-                    $tooltipDiv.append(`<img src="${equipment.Icon}" alt="">`);
-                    $tooltipDiv.append(`<p>${equipment.Name}</p>`);
+                    const $target = $(targetSelector);
+                    $target.append($tooltipDiv);
 
-                    $('.armoryEquipment').append($tooltipDiv);
-                });
+                    // 상세 정보 넣기
+                    const $equipmentRow = $target.closest('.equipment-row');
+                    $equipmentRow.find('.info-title').html(equipment.Name || '');
+                    $equipmentRow.find('.info-content').html(equipment.Grade || '');
+                })
 
                 // 스탯
+                let $stats = $('.stats');
+                $stats.append(`                        
+                        <div class="stats-container"></div>   
+                `);
+
+                let $statsContainer = $('.stats-container');
+
                 characterAllParsing.ArmoryProfile.Stats.forEach(stat => {
-                    $('.stats').append(`
-                        <div style="display:flex">
-                            <p>${stat.Type}</p>
-                            <p>${stat.Value}</p>
-                        </div>   
+                    $statsContainer.append(`
+                      <div class="stat-box">
+                        <span class="stat-name">${stat.Type}</span>
+                        <span class="stat-value">${stat.Value}</span>
+                      </div>
                     `);
                 });
 
                 // 성향
-                characterAllParsing.ArmoryProfile.Tendencies.forEach(stat => {
-                    $('.Tendencies').append(`
-                        <div style="display:flex">
-                            <p>${stat.Type}</p>
-                            <p>${stat.Point}</p>
-                        </div>   
+                let $tendencies = $('.tendencies');
+                $tendencies.append(`                        
+                        <div class="tendencies-container"></div>   
+                `);
+
+                let $tendenciesContainer = $('.tendencies-container');
+
+                characterAllParsing.ArmoryProfile.Tendencies.forEach(tendencies => {
+                    $tendenciesContainer.append(`
+                          <div class="stat-box">
+                            <span class="stat-name">${tendencies.Type}</span>
+                            <span class="stat-value">${tendencies.Point}</span>
+                          </div>
                     `);
                 });
 
+                // characterAllParsing.ArmoryEngraving.ArkPassiveEffects.forEach(engraving => {
+                //     $('.engravings').append(`
+                //         <div style="display:flex">
+                //             <p>${engraving.Grade}</p>
+                //             <p>${engraving.Level}</p>
+                //             <p>${engraving.Name}</p>
+                //         </div>
+                //     `);
+                // });
+                $('.engravings').append(`<div class="engraving-cards-container"></div>`);
+                const $container = $('.engraving-cards-container');
+
                 characterAllParsing.ArmoryEngraving.ArkPassiveEffects.forEach(engraving => {
-                    $('.engravings').append(`
-                        <div style="display:flex">
-                            <p>${engraving.Grade}</p>
-                            <p>${engraving.Level}</p>
-                            <p>${engraving.Name}</p>
-                        </div>   
-                    `);
+                    // $('.engravings').append(`
+                    //     <div class="engraving-card">
+                    //       <span class="engraving-grade grade-${engraving.Grade.toLowerCase()}">${engraving.Grade}</span>
+                    //       <span class="engraving-name">${engraving.Name}</span>
+                    //       <span class="engraving-level">${engraving.Level}</span>
+                    //     </div>
+                    //   `);
+                    $container.append(`
+                        <div class="engraving-card">
+                          <span class="engraving-grade">${engraving.Grade}</span>
+                          <span class="engraving-name">${engraving.Name}</span>
+                          <span class="engraving-level">${engraving.Level}</span>
+                        </div>
+                      `);
+
                 });
 
                 let $gems = $('.gems');
 
                 $gems.append(`
-                    <div class="gemTotal">
-                        <p>${characterAllParsing.ArmoryGem.Effects.Description}</p>
+                    <div class="gems-container">
+                        <div><p>${characterAllParsing.ArmoryGem.Effects.Description}</p></div>
+                        <div class="gemList"></div>
                     </div>
-                    <div class="gemList" style="display:flex"></div>   
                 `);
 
+                let $gemList = $('.gemList');
 
-                if (characterAllParsing.ArmoryGem.Gems != null) {
-                    characterAllParsing.ArmoryGem.Gems.forEach(gem => {
-                        $('.gemList').append(`
-                        <div>
-                            <img src="${gem.Icon}" alt=""/>
-                            <p>${gem.Level}</p>  
-                        </div>   
-                    `);
-                    });
-                } else {
-                    $('.gemList').append(`
-                        <div>
-                            <p>보석이 없습니다.</p>
-                        </div>   
-                    `);
+                for (let i = 0; i < 11; i++){
+                    $gemList.append(`
+                            <div class="gem-slot">
+                                <div class="slot-label"></div>
+                                <div class="item-icon"></div>    
+                            </div>   
+                        `);
                 }
 
+                let $gemSlotLabel = $('.gem-slot .slot-label');
+                let $gemIcon = $('.gem-slot .item-icon');
+
+                if (characterAllParsing.ArmoryGem.Gems != null) {
+                    characterAllParsing.ArmoryGem.Gems.forEach((gem, index) => {
+                        if (index < $gemSlotLabel.length) {
+                            // 각 슬롯에 해당 보석 정보를 설정
+                            $gemSlotLabel.eq(index).text(`Lv.${gem.Level}`);
+                            $gemIcon.eq(index).html(`
+                                <img src="${gem.Icon}" alt="보석 ${index + 1}" />
+                            `);
+                        }
+                    });
+                }
+
+                let $arkPassivesContainer = $('.arkPassives-container');
 
                 if (characterAllParsing.ArkPassive.IsArkPassive) {
-                    $('.arkPassives').append(`
+                    $arkPassivesContainer.append(`
                         <p>아크패시브 활성화</p>  
                     `);
                 } else {
-                    $('.arkPassives').append(`
+                    $arkPassivesContainer.append(`
                         <p>아크패시브 비활성화</p>  
                     `);
                 }
 
+
                 characterAllParsing.ArkPassive.Points.forEach(effect => {
-                    $('.arkPassives').append(`
-                        <div style="display:flex">
-                            <p>${effect.Name}</p>
-                            <p>${effect.Value}</p>
-                        </div>   
+                    $('.arkPassives-points').append(`
+                          <div class="arkPassives-box">
+                            <span class="arkPassives-name">${effect.Name}</span>
+                            <span class="arkPassives-value">${effect.Value}</span>
+                          </div> 
                         `);
                 });
 
                 characterAllParsing.ArkPassive.Effects.forEach(effect => {
-                    $('.arkPassives').append(`
+                    $('.arkPassives-contents').append(`
                         <div style="display:flex">
                             <img src="${effect.Icon}" alt="">
                             <p>${effect.Description}</p>
@@ -210,8 +513,10 @@ function characterInit() {
 
                 });
 
+                let $cardList = $('.card-list')
+
                 characterAllParsing.ArmoryCard.Cards.forEach(card => {
-                    $('.cards').append(`
+                    $cardList.append(`
                         <div class="card">
                             <img src="${card.Icon}" alt="">
                             <p>${card.Name}</p>
