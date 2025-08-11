@@ -1,12 +1,13 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+      layout:decorate="~{layouts/layout}">
 <head>
     <title>각인서</title>
-    <link rel="stylesheet" href="/css/market.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <th:block layout:fragment="styles">
+        <link rel="stylesheet" href="/css/market.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </th:block>
 </head>
 <body>
 <!-- 각페이지 항목-->
@@ -32,11 +33,13 @@
         </div>
     </div>
 
-    <!-- JavaScript 작성란 -->
-    <script src="/js/market.js"></script>
-    <script th:inline="javascript">
-        const marketInfo = [[${marketInfo}]];
-    </script>
+    <th:block layout:fragment="scripts">
+        <script src="/js/market.js"></script>
+        <script th:inline="javascript">
+            const marketInfo = [[${marketInfo}]];
+        </script>
+    </th:block>
+
 </div>
 </body>
 </html>

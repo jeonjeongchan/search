@@ -20,12 +20,8 @@ function characterInit() {
         // 전체 화면
         let $character = $('.character');
         $character.append(`
-
             <div class="character-info">
                 <div class="character-section-1">
-                    <div class="character-name">
-                        <h3>${characterAllParsing.ArmoryProfile.CharacterName}</h3>
-                    </div>
                     <div class="character-profile"></div>    
                 </div>
                 <div class="character-section-2"></div>
@@ -34,52 +30,12 @@ function characterInit() {
 
         // 프로필
         let $characterProfile = $('.character-profile');
-        // $characterProfile.append(`
-        //            <div class="profile-field">
-        //               <img src="${characterAllParsing.ArmoryProfile.CharacterImage}" alt="캐릭터 이미지">
-        //            </div>
-        //           <div class="profile-field">
-        //             <span class="label">아이템 레벨</span>
-        //             <span class="value">${characterAllParsing.ArmoryProfile.ItemAvgLevel}</span>
-        //           </div>
-        //           <div class="profile-field">
-        //             <span class="label">칭호</span>
-        //             <span class="value">${characterAllParsing.ArmoryProfile.Title}</span>
-        //           </div>
-        //           <div class="profile-field">
-        //             <span class="label">서버</span>
-        //             <span class="value">${characterAllParsing.ArmoryProfile.ServerName}</span>
-        //           </div>
-        //           <div class="profile-field">
-        //             <span class="label">클래스</span>
-        //             <span class="value">${characterAllParsing.ArmoryProfile.CharacterClassName}</span>
-        //           </div>
-        //           <div class="profile-field">
-        //             <span class="label">전투레벨</span>
-        //             <span class="value">${characterAllParsing.ArmoryProfile.CombatPower}</span>
-        //           </div>
-        //           <div class="profile-field">
-        //             <span class="label">길드이름</span>
-        //             <span class="value">${characterAllParsing.ArmoryProfile.GuildName}</span>
-        //           </div>
-        //           <div class="profile-field">
-        //             <span class="label">원정대 레벨</span>
-        //             <span class="value">${characterAllParsing.ArmoryProfile.ExpeditionLevel}</span>
-        //           </div>
-        //           <div class="profile-field">
-        //             <span class="label">영지 이름</span>
-        //             <span class="value">${characterAllParsing.ArmoryProfile.TownName}</span>
-        //           </div>
-        //           <div class="profile-field">
-        //             <span class="label">영지 레벨</span>
-        //             <span class="value">${characterAllParsing.ArmoryProfile.TownLevel}</span>
-        //           </div>
-        //
-        //
-        //         `);
 
         $characterProfile.append(`
                   <div class="profile-card column-layout">
+                    <div class="character-name">
+                        <h3>${characterAllParsing.ArmoryProfile.CharacterName}</h3>
+                    </div>
                     <div class="profile-image">
                       <img src="${characterAllParsing.ArmoryProfile.CharacterImage}" alt="캐릭터 이미지">
                     </div>
@@ -87,6 +43,7 @@ function characterInit() {
                       <div class="profile-field"><span class="label">아이템 레벨</span><span class="value">${characterAllParsing.ArmoryProfile.ItemAvgLevel}</span></div>
                       <div class="profile-field"><span class="label">칭호</span><span class="value">${characterAllParsing.ArmoryProfile.Title ? characterAllParsing.ArmoryProfile.Title : '-'}</span></div>
                       <div class="profile-field"><span class="label">서버</span><span class="value">${characterAllParsing.ArmoryProfile.ServerName}</span></div>
+                      <div class="profile-field"><span class="label">아크패시브</span><span class="value">${characterAllParsing.ArkPassive.Title ? characterAllParsing.ArkPassive.Title : '-'}</span></div>
                       <div class="profile-field"><span class="label">클래스</span><span class="value">${characterAllParsing.ArmoryProfile.CharacterClassName}</span></div>
                       <div class="profile-field"><span class="label">전투레벨</span><span class="value">${characterAllParsing.ArmoryProfile.CombatPower}</span></div>
                       <div class="profile-field"><span class="label">길드이름</span><span class="value">${characterAllParsing.ArmoryProfile.GuildName ? characterAllParsing.ArmoryProfile.GuildName : '-'}</span></div>
@@ -303,11 +260,14 @@ function characterInit() {
                             <div class="cards-set-list"></div>
                         </div>
                     </div>
-                    
                     <div class="arkPassives" >
                         <div class="arkPassives-container">
                             <div class="arkPassives-points"></div>
-                            <div class="arkPassives-contents"></div>
+                            <div class="arkPassives-contents" style="display: flex">
+                                <div class="arkPassives-evolution"></div>
+                                <div class="arkPassives-realization"></div>
+                                <div class="arkPassives-leaf"></div>
+                            </div>
                         </div>
                     </div>    
                     <div class="custom-tooltip" style="display: none; position: absolute;"></div> 
@@ -349,19 +309,6 @@ function characterInit() {
                         type = `${type}${typeCounter[type]}`; // 예: 귀걸이1, 귀걸이2
                     }
 
-                    // const targetSelector = typeLayoutMap[type];
-                    //
-                    // if (!targetSelector) {
-                    //     console.warn('Unknown or unmapped type:', type);
-                    //     return;
-                    // }
-                    //
-                    // const $tooltipDiv = $('<div class="item-tooltip-trigger"></div>')
-                    //     .data('tooltip', JSON.parse(equipment.Tooltip))
-                    //     .append(`<img src="${equipment.Icon}" alt="">`);
-                    //
-                    // const $target = $(targetSelector);
-                    // $target.append($tooltipDiv);
                     const targetSelector = typeLayoutMap[type];
 
                     if (!targetSelector) {
@@ -389,7 +336,6 @@ function characterInit() {
                 `);
 
                 let $statsContainer = $('.stats-container');
-
                 characterAllParsing.ArmoryProfile.Stats.forEach(stat => {
                     $statsContainer.append(`
                       <div class="stat-box">
@@ -416,26 +362,10 @@ function characterInit() {
                     `);
                 });
 
-                // characterAllParsing.ArmoryEngraving.ArkPassiveEffects.forEach(engraving => {
-                //     $('.engravings').append(`
-                //         <div style="display:flex">
-                //             <p>${engraving.Grade}</p>
-                //             <p>${engraving.Level}</p>
-                //             <p>${engraving.Name}</p>
-                //         </div>
-                //     `);
-                // });
                 $('.engravings').append(`<div class="engraving-cards-container"></div>`);
                 const $container = $('.engraving-cards-container');
 
                 characterAllParsing.ArmoryEngraving.ArkPassiveEffects.forEach(engraving => {
-                    // $('.engravings').append(`
-                    //     <div class="engraving-card">
-                    //       <span class="engraving-grade grade-${engraving.Grade.toLowerCase()}">${engraving.Grade}</span>
-                    //       <span class="engraving-name">${engraving.Name}</span>
-                    //       <span class="engraving-level">${engraving.Level}</span>
-                    //     </div>
-                    //   `);
                     $container.append(`
                         <div class="engraving-card">
                           <span class="engraving-grade">${engraving.Grade}</span>
@@ -443,9 +373,10 @@ function characterInit() {
                           <span class="engraving-level">${engraving.Level}</span>
                         </div>
                       `);
-
                 });
 
+
+                // 보석
                 let $gems = $('.gems');
 
                 $gems.append(`
@@ -469,10 +400,13 @@ function characterInit() {
                 let $gemSlotLabel = $('.gem-slot .slot-label');
                 let $gemIcon = $('.gem-slot .item-icon');
 
+
                 if (characterAllParsing.ArmoryGem.Gems != null) {
-                    characterAllParsing.ArmoryGem.Gems.forEach((gem, index) => {
+                    // 레벨 기준 내림차순 정렬
+                    let sortedGems = [...characterAllParsing.ArmoryGem.Gems].sort((a, b) => b.Level - a.Level);
+
+                    sortedGems.forEach((gem, index) => {
                         if (index < $gemSlotLabel.length) {
-                            // 각 슬롯에 해당 보석 정보를 설정
                             $gemSlotLabel.eq(index).text(`Lv.${gem.Level}`);
                             $gemIcon.eq(index).html(`
                                 <img src="${gem.Icon}" alt="보석 ${index + 1}" />
@@ -481,21 +415,23 @@ function characterInit() {
                     });
                 }
 
+                // 아크 패시브
                 let $arkPassivesContainer = $('.arkPassives-container');
+                let $arkPassivesPoints = $('.arkPassives-points');
+                let $arkPassivesContents = $('.arkPassives-contents');
 
                 if (characterAllParsing.ArkPassive.IsArkPassive) {
-                    $arkPassivesContainer.append(`
+                    $arkPassivesPoints.append(`
                         <p>아크패시브 활성화</p>  
                     `);
                 } else {
-                    $arkPassivesContainer.append(`
+                    $arkPassivesPoints.append(`
                         <p>아크패시브 비활성화</p>  
                     `);
                 }
 
-
                 characterAllParsing.ArkPassive.Points.forEach(effect => {
-                    $('.arkPassives-points').append(`
+                    $arkPassivesPoints.append(`
                           <div class="arkPassives-box">
                             <span class="arkPassives-name">${effect.Name}</span>
                             <span class="arkPassives-value">${effect.Value}</span>
@@ -504,7 +440,16 @@ function characterInit() {
                 });
 
                 characterAllParsing.ArkPassive.Effects.forEach(effect => {
-                    $('.arkPassives-contents').append(`
+                    let $arkPassivesType = "";
+                    if (effect.Name === "진화") {
+                        $arkPassivesType = $('.arkPassives-evolution');
+                    } else if (effect.Name === "깨달음") {
+                        $arkPassivesType = $('.arkPassives-realization');
+                    } else if (effect.Name === "도약") {
+                        $arkPassivesType = $('.arkPassives-leaf');
+                    }
+
+                    $arkPassivesType.append(`
                         <div style="display:flex">
                             <img src="${effect.Icon}" alt="">
                             <p>${effect.Description}</p>
@@ -513,7 +458,8 @@ function characterInit() {
 
                 });
 
-                let $cardList = $('.card-list')
+                // 카드
+                let $cardList = $('.card-list');
 
                 characterAllParsing.ArmoryCard.Cards.forEach(card => {
                     $cardList.append(`
@@ -649,6 +595,7 @@ function characterInit() {
     }
 }
 
+// 장비 툴팁 생성
 function buildTooltipHTML(data) {
     let html = '';
 
@@ -668,7 +615,7 @@ function buildTooltipHTML(data) {
 
         if (typeof value === 'string') {
             // 문자열 값은 그대로 HTML로 출력
-            html += `<div class="tooltip-text">${value}</div>`;
+            html += `<div class="tooltip-text">${cleanText(value)}</div>`;
         } else if (typeof value === 'object' && value !== null) {
             // 객체인 경우, 타입별로 다르게 처리
 
@@ -677,7 +624,8 @@ function buildTooltipHTML(data) {
                 for (const subKey in value) {
                     const subVal = value[subKey];
                     if (typeof subVal === 'string') {
-                        html += `<div class="tooltip-text">${subVal}</div>`;
+                        html += `<div class="tooltip-text">${cleanText(subVal)}</div>`;
+                        //html += `<div class="tooltip-text">${subVal}</div>`;
                     }
                 }
             } else if (type === 'IndentStringGroup') {
@@ -697,9 +645,11 @@ function buildTooltipHTML(data) {
                     for (const innerKey in contentStrObj) {
                         const innerVal = contentStrObj[innerKey];
                         if (typeof innerVal === 'string') {
-                            html += `<div class="tooltip-text">${innerVal}</div>`;
+                            html += `<div class="tooltip-text">${cleanText(innerVal)}</div>`;
+                            // html += `<div class="tooltip-text">${innerVal}</div>`;
                         } else if (innerVal?.contentStr && typeof innerVal.contentStr === 'string') {
-                            html += `<div class="tooltip-text">${innerVal.contentStr}</div>`;
+                            const cleanedValue = replaceEmoticons(innerVal.contentStr.replace(/\|+$/, ''));
+                            html += `<div class="tooltip-text">${cleanedValue}</div>`;
                         }
                     }
                 }
@@ -713,7 +663,8 @@ function buildTooltipHTML(data) {
                 for (const subKey in value) {
                     const subVal = value[subKey];
                     if (typeof subVal === 'string') {
-                        html += `<div class="tooltip-text">${subVal}</div>`;
+                        html += `<div class="tooltip-text">${cleanText(subVal)}</div>`;
+                        // html += `<div class="tooltip-text">${subVal}</div>`;
                     }
                 }
             }
@@ -723,6 +674,7 @@ function buildTooltipHTML(data) {
     return html;
 }
 
+// 툴팁 초기화
 function tooltipInit() {
 
     $(document).on('mouseenter', '.item-tooltip-trigger', function (e) {
@@ -753,4 +705,27 @@ function tooltipInit() {
         $('.custom-tooltip').hide();
     });
 
+}
+
+
+function cleanText(str) {
+    return typeof str === 'string' ? str.replace(/\|+$/, '') : str;
+}
+
+function replaceEmoticons(str) {
+    if (typeof str !== 'string') return str;
+
+    // 별칭 → 실제 이미지 경로 매핑
+    const emoticonMap = {
+        'emoticon_Transcendence_Grade': 'https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/game/ico_tooltip_transcendence.png',
+        'emoticon_sign_greenDot': 'https://cdn-lostark.game.onstove.com/2018/obt/assets/images/common/game/ico_tooltip_transcendence.png'
+    };
+
+    // 모든 별칭을 실제 경로로 치환
+    for (const key in emoticonMap) {
+        const regex = new RegExp(key, 'g');
+        str = str.replace(regex, emoticonMap[key]);
+    }
+
+    return str;
 }

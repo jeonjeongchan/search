@@ -1,10 +1,12 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+      layout:decorate="~{layouts/layout}">
 <head>
     <title></title>
-    <link rel="stylesheet" href="/css/main.css">
+    <th:block layout:fragment="styles">
+        <link rel="stylesheet" href="/css/main.css">
+    </th:block>
 </head>
 <body>
 <!-- 각페이지 항목-->
@@ -36,12 +38,15 @@
             </div>
         </div>
     </div>
+</div>
+
+<th:block layout:fragment="scripts">
     <script src="/js/main.js"></script>
     <script th:inline="javascript">
         const notices = [[${notices}]];
         const events = [[${events}]];
         const gameContents = [[${gameContents}]];
     </script>
-</div>
+</th:block>
 </body>
 </html>

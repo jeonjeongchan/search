@@ -19,7 +19,7 @@ public class BidController {
     @GetMapping("/bid")
     public String getBid(Model model) {
 
-        return "bid";
+        return "pages/bid";
     }
 
 }

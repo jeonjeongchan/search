@@ -17,9 +17,9 @@ h3 {
     max-width: 800px;
     margin: 0 auto;
     padding: 30px 20px;
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    /*box-shadow: 0 4px 12px rgba(0,0,0,0.05);*/
     min-height: 500px;
 }
 
@@ -28,9 +28,9 @@ h3 {
     padding: 40px 20px;
     max-width: 900px;
     margin: 0 auto;
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    /*box-shadow: 0 4px 12px rgba(0,0,0,0.05);*/
 }
 
 .schedule-1 {
@@ -46,8 +46,8 @@ h3 {
     padding: 0;
     border: 1px solid #ddd;
     border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    /*background: #fff;*/
+    /*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);*/
     overflow: hidden;
 }
 
@@ -133,6 +133,7 @@ h3 {
 
 #event-list li {
     background-color: #fff;
+    border: 1px solid #ddd;
     border-radius: 10px;
     overflow: hidden;
     text-align: center;

@@ -1,9 +1,7 @@
 package com.lostark.search.controller;
 
 import com.lostark.search.service.MainService;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +28,6 @@ public class MainController {
         model.addAttribute("events", events);
         model.addAttribute("gameContents", gameContents);
 
-        return "main";
+        return "pages/main";
     }
 }

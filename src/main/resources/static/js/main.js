@@ -182,14 +182,15 @@ function eventsInit(eventsParsing) {
 // 모험 섬
 function gameContentsInit(gameContentsParsing) {
 
+    debugger;
     const $ul = $('#gameContents-list'); // ul 요소
     const now = new Date();
 
     // 1. "모험 섬" 콘텐츠들 중 미래 시간만 모아서 배열로 저장 (Date 객체만)
     let futureTimes = [];
-    gameContentsParsing.forEach(gc => {
+    $(gameContentsParsing).each(function(index, gc) {
         if (gc.CategoryName && gc.CategoryName.trim() === "모험 섬") {
-            gc.StartTimes.forEach(timeStr => {
+            $(gc.StartTimes).each(function(i, timeStr) {
                 const time = new Date(timeStr);
                 if (time > now) {
                     futureTimes.push(time);
@@ -197,6 +198,16 @@ function gameContentsInit(gameContentsParsing) {
             });
         }
     });
+    // for (const gc of gameContentsParsing) {
+    //     if (gc.CategoryName && gc.CategoryName.trim() === "모험 섬" && Array.isArray(gc.StartTimes)) {
+    //         for (const timeStr of gc.StartTimes) {
+    //             const time = new Date(timeStr);
+    //             if (time > now) {
+    //                 futureTimes.push(time);
+    //             }
+    //         }
+    //     }
+    // }
 
     // 2. 가장 가까운 미래 시간 하나 선택
     if (futureTimes.length === 0) {
@@ -207,8 +218,14 @@ function gameContentsInit(gameContentsParsing) {
         // 3. 가장 가까운 시간과 정확히 일치하는 콘텐츠만 출력
         $.each(gameContentsParsing, function (index, gameContent) {
             if (gameContent.CategoryName && gameContent.CategoryName.trim() === "모험 섬") {
-                const matchedTimeStr = gameContent.StartTimes.find(timeStr => {
-                    return new Date(timeStr).getTime() === closestTime;
+                
+                let matchedTimeStr = null;
+
+                $.each(gameContent.StartTimes, function(i, timeStr) {
+                    if (new Date(timeStr).getTime() === closestTime) {
+                        matchedTimeStr = timeStr;
+                        return false; // break
+                    }
                 });
 
                 if (matchedTimeStr) {

@@ -20,7 +20,7 @@ public class UserController {
 
     @GetMapping("/register")
     public String getRegister() {
-        return "register";
+        return "pages/register";
     }
 
     @PostMapping("/register")
@@ -31,7 +31,7 @@ public class UserController {
         // 아이디 중복 체크
         if (userService.checkRegister(username)) {
             model.addAttribute("error", "이미 사용중인 아이디 입니다.");
-            return "/register";
+            return "pages/register";
         }
 
         userService.register(username, password);
@@ -42,7 +42,7 @@ public class UserController {
     public String getLogin(@RequestParam(required = false) String error, Model model) {
         if (error != null) model.addAttribute("error", "아이디 또는 비밀번호가 올바르지 않습니다.");
 
-        return "login";
+        return "pages/login";
     }
 
 }

@@ -40,7 +40,7 @@ public class CharacterController {
         //model.addAttribute("characterSkills ", characterSkills);
 
         // 반환할 뷰 템플릿 이름 (src/main/resources/templates 폴더에 있는 HTML 파일)
-        return "character";
+        return "pages/character";
     }
 
 

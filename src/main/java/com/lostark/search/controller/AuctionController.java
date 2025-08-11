@@ -7,8 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.HttpClientErrorException;
 
-import java.util.List;
-
 @Controller
 public class AuctionController {
 
@@ -35,7 +33,7 @@ public class AuctionController {
             model.addAttribute("error", "조회 중 오류가 발생했습니다.");
         }
 
-        return "auction";
+        return "pages/auction";
     }
 
 }

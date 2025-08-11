@@ -1,0 +1,26 @@
+<th:block xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+          th:fragment="header">
+    <header class="d-flex justify-content-between align-items-center py-3 mb-4 border-bottom w-100 px-4">
+        <a href="/" class="d-flex align-items-center text-dark text-decoration-none me-3">
+            <span class="fs-4">로아 검색기</span>
+        </a>
+        <div class="flex-grow-1 d-flex justify-content-center">
+            <form id="characterForm" class="d-flex mx-auto" role="search" method="get">
+                <input id="characterName" class="form-control me-2" type="search"
+                       placeholder="검색할 캐릭터명을 입력하세요..." aria-label="Search" required>
+                <button id="characterSubmit" class="btn btn-outline-primary" type="submit" style="width: 80px;">검색</button>
+            </form>
+        </div>
+        <div>
+            <ul class="nav">
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a href="/logout" class="nav-link">로그아웃</a>
+                </li>
+                <li class="nav-item" sec:authorize="isAnonymous()">
+                    <a href="/login" class="nav-link">로그인</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+</th:block>
