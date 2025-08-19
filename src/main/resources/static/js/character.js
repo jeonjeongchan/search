@@ -12,6 +12,14 @@ function characterInit() {
         let characterAllParsing = JSON.parse(characterAllData);
         let siblingsParsing = JSON.parse(siblings);
         //let guildMemberParsing = JSON.parse(guildMember);
+        const gradeColors = {
+            "고대": "#E3C7A1",
+            "유물": "#FA5D00",
+            "전설": "#F99200",
+            "영웅": "#ce43fc",
+            "희귀": "#00B0FA"
+
+        };
 
         console.log(characterAllParsing);
         console.log(siblingsParsing);
@@ -44,8 +52,9 @@ function characterInit() {
                       <div class="profile-field"><span class="label">칭호</span><span class="value">${characterAllParsing.ArmoryProfile.Title ? characterAllParsing.ArmoryProfile.Title : '-'}</span></div>
                       <div class="profile-field"><span class="label">서버</span><span class="value">${characterAllParsing.ArmoryProfile.ServerName}</span></div>
                       <div class="profile-field"><span class="label">아크패시브</span><span class="value">${characterAllParsing.ArkPassive.Title ? characterAllParsing.ArkPassive.Title : '-'}</span></div>
+                      <div class="profile-field"><span class="label">캐릭터레벨</span><span class="value">${characterAllParsing.ArmoryProfile.CharacterLevel}</span></div>
                       <div class="profile-field"><span class="label">클래스</span><span class="value">${characterAllParsing.ArmoryProfile.CharacterClassName}</span></div>
-                      <div class="profile-field"><span class="label">전투레벨</span><span class="value">${characterAllParsing.ArmoryProfile.CombatPower}</span></div>
+                      <div class="profile-field"><span class="label">전투력</span><span class="value">${characterAllParsing.ArmoryProfile.CombatPower ? characterAllParsing.ArmoryProfile.CombatPower : 0}</span></div>
                       <div class="profile-field"><span class="label">길드이름</span><span class="value">${characterAllParsing.ArmoryProfile.GuildName ? characterAllParsing.ArmoryProfile.GuildName : '-'}</span></div>
                       <div class="profile-field"><span class="label">원정대 레벨</span><span class="value">${characterAllParsing.ArmoryProfile.ExpeditionLevel}</span></div>
                       <div class="profile-field"><span class="label">영지 이름</span><span class="value">${characterAllParsing.ArmoryProfile.TownName}</span></div>
@@ -247,7 +256,7 @@ function characterInit() {
                             </div>
                         </div>
                     </div>
-                    <div style="display: flex;  padding: 20px;">
+                    <div class="character-stat-list" style="display: flex;  padding: 20px;">
                         <div class="stats" style="padding: 20px;"></div>
                         <div class="tendencies" style="padding: 20px;"></div>
                         <div class="engravings" style="padding: 20px;"></div>
@@ -260,10 +269,10 @@ function characterInit() {
                             <div class="cards-set-list"></div>
                         </div>
                     </div>
-                    <div class="arkPassives" >
+                    <div class="arkPassives">
                         <div class="arkPassives-container">
                             <div class="arkPassives-points"></div>
-                            <div class="arkPassives-contents" style="display: flex">
+                            <div class="arkPassives-contents">
                                 <div class="arkPassives-evolution"></div>
                                 <div class="arkPassives-realization"></div>
                                 <div class="arkPassives-leaf"></div>
@@ -295,6 +304,8 @@ function characterInit() {
 
                 // 타입별 등장 횟수를 기록하기 위한 카운터
                 const typeCounter = {};
+                // Grade별 색상 매핑
+
 
                 characterAllParsing.ArmoryEquipment.forEach((equipment) => {
                     let type = equipment.Type;
@@ -324,10 +335,24 @@ function characterInit() {
                     $target.append($tooltipDiv);
 
                     // 상세 정보 넣기
+                    // const $equipmentRow = $target.closest('.equipment-row');
+                    // $equipmentRow.find('.info-title').html(equipment.Name || '');
+                    // $equipmentRow.find('.info-content').html(equipment.Grade || '');
+
+                    // 상세 정보 넣기
                     const $equipmentRow = $target.closest('.equipment-row');
-                    $equipmentRow.find('.info-title').html(equipment.Name || '');
-                    $equipmentRow.find('.info-content').html(equipment.Grade || '');
-                })
+                    const $title = $equipmentRow.find('.info-title');
+                    const $content = $equipmentRow.find('.info-content');
+
+                    $title.html(equipment.Name || '');
+                    $content.html(equipment.Grade || '');
+
+                    // Grade에 따른 색상 적용
+                    const color = gradeColors[equipment.Grade] || "#ffffff";
+                    $title.css('color', color);
+                    $content.css('color', color);
+                });
+
 
                 // 스탯
                 let $stats = $('.stats');
@@ -365,15 +390,17 @@ function characterInit() {
                 $('.engravings').append(`<div class="engraving-cards-container"></div>`);
                 const $container = $('.engraving-cards-container');
 
-                characterAllParsing.ArmoryEngraving.ArkPassiveEffects.forEach(engraving => {
-                    $container.append(`
+                if (characterAllParsing.ArmoryEngraving != null) {
+                    characterAllParsing.ArmoryEngraving.ArkPassiveEffects.forEach(engraving => {
+                        $container.append(`
                         <div class="engraving-card">
                           <span class="engraving-grade">${engraving.Grade}</span>
                           <span class="engraving-name">${engraving.Name}</span>
                           <span class="engraving-level">${engraving.Level}</span>
                         </div>
                       `);
-                });
+                    });
+                }
 
 
                 // 보석
@@ -587,12 +614,18 @@ function characterInit() {
         });
         // 능력치 보이게 초기화
         $('.character-menu button[data-type="ability"]').trigger("click");
+
     } else {
         let $character = $('.character');
         $character.append(`
             <p>캐릭터 정보가 없습니다.</p>    
         `)
     }
+
+
+
+
+
 }
 
 // 장비 툴팁 생성
@@ -611,6 +644,10 @@ function buildTooltipHTML(data) {
             html += `<div class="tooltip-icon" style="margin-bottom:6px;">
                  <img src="${value.slotData.iconPath}" alt="icon" style="width:32px; height:32px;">
                </div>`;
+        }
+
+        if (type === 'ItemTitle' && value?.qualityValue !== null && value?.qualityValue >= 0) {
+            html += renderQualityBar(value.qualityValue);
         }
 
         if (typeof value === 'string') {
@@ -669,6 +706,8 @@ function buildTooltipHTML(data) {
                 }
             }
         }
+
+
     }
 
     return html;
@@ -709,7 +748,7 @@ function tooltipInit() {
 
 
 function cleanText(str) {
-    return typeof str === 'string' ? str.replace(/\|+$/, '') : str;
+    return typeof str === 'string' ? str.replace(/^\|+|\|+$/g, '') : str;
 }
 
 function replaceEmoticons(str) {
@@ -729,3 +768,27 @@ function replaceEmoticons(str) {
 
     return str;
 }
+
+// 품질 막대
+function renderQualityBar(qualityValue) {
+    // 색상 규칙 (로스트아크 기준)
+    let color;
+    if (qualityValue < 10) color = "#ff0000";      // 빨강
+    else if (qualityValue < 30) color = "#fefd48"; // 노랑
+    else if (qualityValue < 70) color = "#1eff00"; // 초록
+    else if (qualityValue < 90) color = "#0070dd"; // 파랑
+    else if (qualityValue < 100) color = "#a335ee"; // 파랑
+    else color = "#ff8000";                         // 주황 (90 이상)
+
+    return `
+      <div class="quality-wrap" style="display:flex;align-items:center;margin-top:4px;">
+        <div class="quality-bar">
+          <div class="quality-fill" style="width:${qualityValue}%;height:100%;background:${color};transition:width 0.5s;"></div>
+        </div>
+        <span class="quality-text" style="margin-left:6px;font-size:12px;font-weight:bold;color:${color};">${qualityValue}</span>
+      </div>
+    `;
+}
+
+
+
